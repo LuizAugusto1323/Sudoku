@@ -2,22 +2,10 @@ package br.com.dio.sudoku.model;
 
 import java.util.Collection;
 import java.util.List;
-
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
-public class Board {
-
-    private final List<List<Space>> spaces;
-
-
-    public Board(List<List<Space>> spaces) {
-        this.spaces = spaces;
-    }
-
-    public List<List<Space>> getSpaces() {
-        return spaces;
-    }
+public record Board(List<List<Space>> spaces) {
 
     public GameStatus getGameStatus() {
         if (spaces.stream().flatMap(List::stream).noneMatch(b -> !b.isFixed() && nonNull(b.getActual()))) {
